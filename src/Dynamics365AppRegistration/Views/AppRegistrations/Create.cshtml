@@ -1,0 +1,93 @@
+@model Dynamics365AppRegistration.Models.AppRegistration
+
+@{
+    ViewData["Title"] = "Register your app";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<p>Welcome to the registration page of @ViewData["AppName"]</p>
+@using (Html.BeginForm(new { id = "postform" }))
+{
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @Html.HiddenFor(m => m.AppId)
+        @Html.HiddenFor(m => m.TenantId)
+        @Html.HiddenFor(m => m.D365CompanyName)
+        @Html.HiddenFor(m => m.RegistrationDate)
+        <div class="form-group">
+            <label asp-for="CompanyName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CompanyName" class="form-control" />
+                <span asp-validation-for="CompanyName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyAddress" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CompanyAddress" class="form-control" />
+                <span asp-validation-for="CompanyAddress" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyPostcode" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CompanyPostcode" class="form-control" />
+                <span asp-validation-for="CompanyPostcode" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyCity" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CompanyCity" class="form-control" />
+                <span asp-validation-for="CompanyCity" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CompanyCountry" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="CompanyCountry" class="form-control" />
+                <span asp-validation-for="CompanyCountry" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactEmail" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ContactEmail" class="form-control" />
+                <span asp-validation-for="ContactEmail" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactName" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ContactName" class="form-control" />
+                <span asp-validation-for="ContactName" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContactPhoneNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ContactPhoneNo" class="form-control" />
+                <span asp-validation-for="ContactPhoneNo" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="NumberRegisteredUsers" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="NumberRegisteredUsers" class="form-control" />
+                <span asp-validation-for="NumberRegisteredUsers" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+}
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,104 @@
+@model IEnumerable<Dynamics365AppRegistration.Models.AppRegistration>
+
+@{
+    ViewData["Title"] = "Registrations";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AppId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TenantId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.D365CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyPostcode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyCity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CompanyCountry)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactEmail)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ContactPhoneNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumberRegisteredUsers)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RegistrationDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.AppId)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.TenantId)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.D365CompanyName)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+           <td nowrap>
+                @Html.DisplayFor(modelItem => item.CompanyAddress)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.CompanyPostcode)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.CompanyCity)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.CompanyCountry)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.ContactEmail)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.ContactPhoneNo)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.NumberRegisteredUsers)
+            </td>
+            <td nowrap>
+                @Html.DisplayFor(modelItem => item.RegistrationDate)
+            </td>
+            <td nowrap>
+                <a asp-action="Edit" asp-route-id="@item.id">Edit</a> | 
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> | 
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
