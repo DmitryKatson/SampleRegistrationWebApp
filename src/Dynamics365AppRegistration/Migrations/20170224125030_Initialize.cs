@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Dynamics365AppRegistration.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Initialize : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -50,7 +50,6 @@ namespace Dynamics365AppRegistration.Migrations
                     ContactEmail = table.Column<string>(nullable: false),
                     ContactName = table.Column<string>(nullable: true),
                     ContactPhoneNo = table.Column<string>(nullable: true),
-                    D365CompanyName = table.Column<string>(nullable: false),
                     NumberRegisteredUsers = table.Column<int>(nullable: false),
                     RegistrationDate = table.Column<DateTime>(nullable: false),
                     TenantId = table.Column<string>(nullable: false)

@@ -93,9 +93,6 @@ namespace Dynamics365AppRegistration.Migrations
 
                     b.Property<string>("ContactPhoneNo");
 
-                    b.Property<string>("D365CompanyName")
-                        .IsRequired();
-
                     b.Property<int>("NumberRegisteredUsers");
 
                     b.Property<DateTime>("RegistrationDate");

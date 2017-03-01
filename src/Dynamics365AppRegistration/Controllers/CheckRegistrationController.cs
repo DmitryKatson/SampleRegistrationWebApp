@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Dynamics365AppRegistration.Models;
 using Dynamics365AppRegistration.Data;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Dynamics365AppRegistration.Controllers
 {
@@ -26,39 +27,49 @@ namespace Dynamics365AppRegistration.Controllers
 
         // GET: api/CheckRegistration
         [HttpGet]
-        public IActionResult Get(string tenantId, string appId, string CompanyName, int numberUsers)
+        public IActionResult Get(string tenantid, string appid, int numberusers, bool isEvaluationcompany)
         {
             var result = new CheckRegistration();
             result.AccessLevel = AccessLevel.NoAccess;
-            result.Notification = string.Empty;
+            result.NotificationMessage = string.Empty;
 
-            if (string.IsNullOrEmpty(tenantId) || string.IsNullOrEmpty(appId) || string.IsNullOrEmpty(CompanyName))
+            if (string.IsNullOrEmpty(tenantid) || string.IsNullOrEmpty(appid))
             {
-                result.Notification = "Incorrect parameters used to check registration.";
+                result.NotificationMessage = "Incorrect parameters used to check registration. Please contact the app vendor to get this solved.";
                 return this.Ok(result);
             }
-            var appInfo = _appSettings.AppInfo.FirstOrDefault<AppInfo>(a => a.id == appId);
+            var appInfo = _appSettings.AppInfo.FirstOrDefault<AppInfo>(a => a.id.ToLower() == appid.ToLower());
             if (appInfo == null)
             {
-                result.Notification = "The used app id is unknown. Please contact the app vendor to get this solved.";
+                result.NotificationMessage = "The app id is unknown. Please contact the app vendor to get this solved.";
                 return this.Ok(result);
             }
 
             AppRegistration appRegistration;
 
-            appRegistration = _context.AppRegistration.FirstOrDefault<AppRegistration>(r => r.TenantId == tenantId && r.AppId == appId && r.D365CompanyName == CompanyName);
+            if (isEvaluationcompany)
+            {
+                result.AccessLevel = AccessLevel.Full;
+                return this.Ok(result);
+            }
+
+            appRegistration = _context.AppRegistration.FirstOrDefault<AppRegistration>(r => r.TenantId == tenantid && r.AppId == appid);
 
             if (appRegistration == null)
             {
-                result.Notification = $"Please register the {appInfo.name} app to unlock all features.";
+                result.NotificationMessage = $"Please register the {appInfo.name} app to unlock all features.";
+                result.NotificationActionText = "Click here to register";
+                result.RedirectUrl = Url.Action("Create", "AppRegistrations", FormMethod.Get, Request.Scheme) + Request.QueryString.Value;
                 return this.Ok(result);
             }
 
             result.AccessLevel = appRegistration.AccessLevel;
 
-            if (appRegistration.NumberRegisteredUsers < numberUsers)
+            if (appRegistration.NumberRegisteredUsers < numberusers)
             {
-                result.Notification = "The number of registered users is incorrect. Please contact the app vendor to update your registration.";
+                result.NotificationMessage = "The number of registered users is incorrect. Please contact the app vendor to update your registration.";
+                result.NotificationActionText = "Click here to update";
+                result.RedirectUrl = "TODO";
             }
 
             return this.Ok(result);

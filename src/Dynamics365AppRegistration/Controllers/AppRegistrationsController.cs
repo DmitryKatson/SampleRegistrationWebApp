@@ -50,23 +50,23 @@ namespace Dynamics365AppRegistration.Controllers
 
         // GET: AppRegistrations/Create
         [AllowAnonymous]
-        public IActionResult Create(string tenantId, string appId, string CompanyName, int numberUsers)
+        public IActionResult Create(string tenantId, string appId, int numberUsers)
         {
-            if (string.IsNullOrEmpty(tenantId) || string.IsNullOrEmpty(appId) || string.IsNullOrEmpty(CompanyName))
+            if (string.IsNullOrEmpty(tenantId) || string.IsNullOrEmpty(appId))
             {
                 return Ok("Incorrect parameters");
             }
 
             AppRegistration appRegistration;
 
-            appRegistration = _context.AppRegistration.FirstOrDefault<AppRegistration>(r => r.TenantId == tenantId && r.AppId == appId && r.D365CompanyName == CompanyName);
+            appRegistration = _context.AppRegistration.FirstOrDefault<AppRegistration>(r => r.TenantId == tenantId && r.AppId == appId);
 
             if (appRegistration != null)
             {
                 return View("RegistrationSuccessful", appRegistration);
             }
 
-            var appInfo = _appSettings.AppInfo.FirstOrDefault<AppInfo>(a => a.id == appId);
+            var appInfo = _appSettings.AppInfo.FirstOrDefault<AppInfo>(a => a.id.ToLower() == appId.ToLower());
             if (appInfo == null)
             {
                 return Ok("Unknown app id");
@@ -78,7 +78,6 @@ namespace Dynamics365AppRegistration.Controllers
             {
                 AppId = appId,
                 TenantId = tenantId,
-                D365CompanyName = CompanyName,
                 RegistrationDate = DateTime.Today,
                 NumberRegisteredUsers = numberUsers
             };
@@ -97,7 +96,7 @@ namespace Dynamics365AppRegistration.Controllers
         [AllowAnonymous]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("AppId,CompanyAddress,CompanyCity,CompanyCountry,CompanyName,CompanyPostcode,ContactEmail,ContactName,ContactPhoneNo,D365CompanyName,NumberRegisteredUsers,RegistrationDate,TenantId")] AppRegistration appRegistration)
+        public async Task<IActionResult> Create([Bind("AppId,CompanyAddress,CompanyCity,CompanyCountry,CompanyName,CompanyPostcode,ContactEmail,ContactName,ContactPhoneNo,NumberRegisteredUsers,RegistrationDate,TenantId")] AppRegistration appRegistration)
         {
             if (ModelState.IsValid)
             {
@@ -130,7 +129,7 @@ namespace Dynamics365AppRegistration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,AppId,CompanyAdress,CompanyCity,CompanyCountry,CompanyName,CompanyPostcode,ContactEmail,ContactName,ContactPhoneNo,D365CompanyName,NumberRegisteredUsers,RegistrationDate,TenantId")] AppRegistration appRegistration)
+        public async Task<IActionResult> Edit(int id, [Bind("id,AppId,CompanyAdress,CompanyCity,CompanyCountry,CompanyName,CompanyPostcode,ContactEmail,ContactName,ContactPhoneNo,NumberRegisteredUsers,RegistrationDate,TenantId")] AppRegistration appRegistration)
         {
             if (id != appRegistration.id)
             {

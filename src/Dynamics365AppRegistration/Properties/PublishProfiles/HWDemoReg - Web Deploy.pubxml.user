@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACh8plXfbrEGqfhky9agedwAAAAACAAAAAAAQZgAAAAEAACAAAADrr8ZtX4nNy041yfJxMrCyfYdYbYRAmXUNvtbWOJwlGAAAAAAOgAAAAAIAACAAAADPD2DM0PsiFb8bByKzZANAzQPyrkufZk3kbW8WgmFQHoAAAAD90un6lGJl8ypS8C/z2sAGt4SXW0uXHSV15fjxmKdeZFcvPTrjPq1QUmR8YFiv6+OD0Bs8y6u7Sc8ElrzkfTRiEQCfZAOZE8cJ5wyCuhmroYOVyvvzGz62M2t9kWGxKIPPQq/kRe7dPDcLvP8JqOHQSbQzKSGwxPj6tJHXV3yk70AAAACsZomoebNGWSktO4FrVZYhUNB3KhTGpq5wGlq5deE6yHTZSYLZFaYhvZKAQvh0KaJ+FiSmiTm+7joy1E0vnSCy</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:hwdemoregdbserver.database.windows.net,1433;Initial Catalog=HWDemoReg_db;User Id=sqladmin@hwdemoregdbserver;Password=P9kA4dt6DmAr</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <EfMigrations Include="Dynamics365AppRegistration.Data.ApplicationDbContext">
+      <Value>Data Source=tcp:hwdemoregdbserver.database.windows.net,1433;Initial Catalog=HWDemoReg_db;User Id=sqladmin@hwdemoregdbserver;Password=P9kA4dt6DmAr</Value>
+    </EfMigrations>
+  </ItemGroup>
+</Project>

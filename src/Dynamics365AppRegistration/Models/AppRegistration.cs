@@ -20,10 +20,6 @@ namespace Dynamics365AppRegistration.Models
         public string AppId { get; set; }
 
         [Required]
-        [Display(Name ="Dynamics 365 Company Name")]
-        public string D365CompanyName { get; set; }
-
-        [Required]
         [Display(Name ="Company Name")]
         public string CompanyName { get; set; }
 

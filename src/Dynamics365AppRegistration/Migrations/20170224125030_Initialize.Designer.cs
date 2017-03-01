@@ -8,8 +8,8 @@ using Dynamics365AppRegistration.Data;
 namespace Dynamics365AppRegistration.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170214141427_Initial")]
-    partial class Initial
+    [Migration("20170224125030_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -93,9 +93,6 @@ namespace Dynamics365AppRegistration.Migrations
                     b.Property<string>("ContactName");
 
                     b.Property<string>("ContactPhoneNo");
-
-                    b.Property<string>("D365CompanyName")
-                        .IsRequired();
 
                     b.Property<int>("NumberRegisteredUsers");
 
