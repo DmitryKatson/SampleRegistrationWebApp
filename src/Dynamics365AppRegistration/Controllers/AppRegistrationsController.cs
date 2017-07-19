@@ -129,7 +129,7 @@ namespace Dynamics365AppRegistration.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,AppId,CompanyAdress,CompanyCity,CompanyCountry,CompanyName,CompanyPostcode,ContactEmail,ContactName,ContactPhoneNo,NumberRegisteredUsers,RegistrationDate,TenantId")] AppRegistration appRegistration)
+        public async Task<IActionResult> Edit(int id, [Bind("id,AppId,CompanyAddress,CompanyCity,CompanyCountry,CompanyName,CompanyPostcode,ContactEmail,ContactName,ContactPhoneNo,NumberRegisteredUsers,RegistrationDate,TenantId")] AppRegistration appRegistration)
         {
             if (id != appRegistration.id)
             {
